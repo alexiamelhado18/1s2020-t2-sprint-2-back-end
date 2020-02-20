@@ -1,0 +1,13 @@
+CREATE DATABASE M_Peoples_;
+
+--DDL
+
+USE M_Peoples_;
+GO
+
+CREATE TABLE Funcionario(
+IdFun				INT PRIMARY KEY IDENTITY,
+NomeFun				VARCHAR(255) NOT NULL,
+SobrenomeFun		VARCHAR(255) NOT NULL
+);
+GO
