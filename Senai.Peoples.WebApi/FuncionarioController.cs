@@ -37,5 +37,13 @@ namespace Senai.Peoples.WebApi.Controllers
             }return NotFound("Funcionário não encontrado");
         }
 
+        [HttpPost]
+        public IActionResult CadastrarFun(FuncionarioDomain funcionario)
+        {
+             _FuncionarioRepository.CadastrarFun(funcionario.NomeFun, funcionario.SobrenomeFun);
+
+            return Created(201);
+        }
+
    }
 }

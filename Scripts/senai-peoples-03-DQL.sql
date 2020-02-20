@@ -1,6 +1,6 @@
 --DQL 
 
-USE M_Peoples_;
+USE M_Peoples;
 GO
 
 SELECT * FROM Funcionario;

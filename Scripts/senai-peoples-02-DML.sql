@@ -1,6 +1,6 @@
 --DML
 
-USE M_Peoples_;
+USE M_Peoples;
 GO
 
 INSERT INTO Funcionario(NomeFun,SobrenomeFun)

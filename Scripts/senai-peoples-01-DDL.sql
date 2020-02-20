@@ -1,8 +1,8 @@
-CREATE DATABASE M_Peoples_;
+CREATE DATABASE M_Peoples;
 
 --DDL
 
-USE M_Peoples_;
+USE M_Peoples;
 GO
 
 CREATE TABLE Funcionario(
