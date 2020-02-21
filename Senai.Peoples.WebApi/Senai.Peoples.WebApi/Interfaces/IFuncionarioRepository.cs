@@ -18,5 +18,9 @@ namespace Senai.Peoples.WebApi.Interfaces
         
         void DeletarFun(int id);
 
-    }
+        List<FuncionarioDomain> RetornarFunASC();
+
+        FuncionarioDomain RetornarNome(string nomeFun);
+
+     }
 }

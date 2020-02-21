@@ -19,12 +19,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "  {\r\n        \"titulo\": \"A vida\"\r\n  }",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"raw": "  {\r\n        \"titulo\": \"A vida\"\r\n  }"
 				},
 				"url": {
 					"raw": "http://localhost:5000/api/Funcionario/3",
@@ -77,12 +72,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": " {\r\n        \"nomeFun\": \"Tadeu\",\r\n        \"sobrenomeFun\": \"Vitellim\"\r\n    }",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"raw": " {\r\n        \"nomeFun\": \"Tadeu\",\r\n        \"sobrenomeFun\": \"Vitellim\"\r\n    }"
 				},
 				"url": {
 					"raw": "http://localhost:5000/api/Funcionario/2",
@@ -114,12 +104,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "    {\r\n        \"idFun\": 2,\r\n        \"nomeFun\": \"Tadeu\",\r\n        \"sobrenomeFun\": \"Vitellinm\"\r\n    }",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"raw": "    {\r\n        \"idFun\": 2,\r\n        \"nomeFun\": \"Tadeu\",\r\n        \"sobrenomeFun\": \"Vitellinm\"\r\n    }"
 				},
 				"url": {
 					"raw": "http://localhost:5000/api/Funcionario",
@@ -150,12 +135,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "  {\r\n        \"titulo\": \"A vida\"\r\n  }",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"raw": "  {\r\n        \"titulo\": \"A vida\"\r\n  }"
 				},
 				"url": {
 					"raw": "http://localhost:5000/api/Funcionario/3",
@@ -168,6 +148,70 @@
 						"api",
 						"Funcionario",
 						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5000/api/Funcionario/RetornarFunASC/ordemnsASC",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/Funcionario/RetornarFunASC/ordemnsASC",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Funcionario",
+						"RetornarFunASC",
+						"ordemnsASC"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5000/api/Funcionario/RetornarFunASC/ordemnsASC",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/Funcionario/NomeFun/Luciano",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Funcionario",
+						"NomeFun",
+						"Luciano"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5000/api/Funcionario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/Funcionario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Funcionario"
 					]
 				}
 			},

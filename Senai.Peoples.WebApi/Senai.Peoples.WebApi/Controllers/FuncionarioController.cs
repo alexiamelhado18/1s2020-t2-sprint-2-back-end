@@ -14,7 +14,7 @@ namespace Senai.Peoples.WebApi.Controllers
         private IFuncionarioRepository _FuncionarioRepository { get; set; }
 
         public FuncionarioController()
-        {
+        { 
 
             _FuncionarioRepository = new FuncionarioRepository();
         }
@@ -118,5 +118,27 @@ namespace Senai.Peoples.WebApi.Controllers
             }
         }
 
+
+        [HttpGet("RetornarNome/{NomeFun}")]
+        public IActionResult OrdenarporNome(string nomeFun)
+        {
+            return StatusCode(200, _FuncionarioRepository.RetornarNome(nomeFun));
+            //return StatusCode(200, _funcionarioRepository.BuscarPorNome(nome));
+        }
+
+        [HttpGet("RetornarFunASC/{ordemnsASC}")]
+        public IActionResult RetornarFunASC(string ordemnsASC)
+        {
+            if (ordemnsASC == "ASC")
+            {
+                return StatusCode(200, _FuncionarioRepository.RetornarFunASC());
+            }
+            else
+            {
+                return StatusCode(400);
+            }
+        }
+
+
+      }
     }
-}

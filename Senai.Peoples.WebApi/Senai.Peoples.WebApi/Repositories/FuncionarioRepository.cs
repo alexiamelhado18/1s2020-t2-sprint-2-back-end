@@ -9,7 +9,7 @@ namespace Senai.Peoples.WebApi.Repositories
     public class FuncionarioRepository : IFuncionarioRepository
     {
 
-        private string StringConexao = "Data Source=DEV1001\\SQLEXPRESS; initial catalog=M_Peoples; user Id=sa; pwd=sa@132";
+        private string StringConexao = "Data Source=LAB104701\\SQLEXPRESS02; initial catalog=M_Peoples; user Id=sa; pwd=132";
 
 
         public void AlterarInfoFunId(int id, FuncionarioDomain funcionarioDomain)
@@ -34,9 +34,9 @@ namespace Senai.Peoples.WebApi.Repositories
         }
 
 
-        
 
-        public void AlterarInfoFunCorpo(FuncionarioDomain funcionario)    
+
+        public void AlterarInfoFunCorpo(FuncionarioDomain funcionario)
         {
             using (SqlConnection con = new SqlConnection(StringConexao))
             {
@@ -45,12 +45,12 @@ namespace Senai.Peoples.WebApi.Repositories
                 string queryAtualizarId = "UPDATE Funcionario SET NomeFun = @NomeFun," +
                                           "SobrenomeFun = @SobrenomeFun WHERE IdFun = @ID";
 
-            using (SqlCommand cmd = new SqlCommand(queryAtualizarId, con))
+                using (SqlCommand cmd = new SqlCommand(queryAtualizarId, con))
                 {
                     cmd.Parameters.AddWithValue("@ID", funcionario.IdFun);
                     cmd.Parameters.AddWithValue("@NomeFun", funcionario.NomeFun);
                     cmd.Parameters.AddWithValue("@SobrenomeFun", funcionario.SobrenomeFun);
-                                       
+
                     con.Open();
 
                     cmd.ExecuteNonQuery();
@@ -101,7 +101,7 @@ namespace Senai.Peoples.WebApi.Repositories
 
         public void CadastrarFun(FuncionarioDomain funcionarioDomain)
         {
-            using (SqlConnection con = new SqlConnection (StringConexao))
+            using (SqlConnection con = new SqlConnection(StringConexao))
             {
                 string queryCadastrar = "INSERT INTO Funcionario(NomeFun,SobrenomeFun) VALUES (@NomeFun,@SobrenomeFun)";
 
@@ -129,7 +129,7 @@ namespace Senai.Peoples.WebApi.Repositories
                 using (SqlCommand cmd = new SqlCommand(queryDeletar, con))
                 {
                     cmd.Parameters.AddWithValue("@ID", id);
-                    con.Open();                 
+                    con.Open();
                     cmd.ExecuteNonQuery();
 
                 }
@@ -165,7 +165,7 @@ namespace Senai.Peoples.WebApi.Repositories
                         };
                         funcionarios.Add(funcionario);
                     }
-                      
+
                 }
                 return funcionarios;
             }
@@ -173,5 +173,73 @@ namespace Senai.Peoples.WebApi.Repositories
 
 
 
+        public FuncionarioDomain RetornarNome(string NomeFun)
+        {
+            FuncionarioDomain funcionarios = new FuncionarioDomain();
+
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+
+
+                string queryOrderN = "EXEC BuscarNome '@NomeFun' ";
+
+                con.Open();
+
+                SqlDataReader rdr;
+
+                using (SqlCommand cmd = new SqlCommand(queryOrderN, con))
+                {
+                    cmd.Parameters.AddWithValue("@NomeFun", NomeFun);
+
+                    rdr = cmd.ExecuteReader();
+
+                    while (rdr.Read())
+                    {
+                        funcionarios.IdFun = Convert.ToInt32(rdr["IdFun"]);
+                        funcionarios.NomeFun = rdr["Nome"].ToString() + " "
+                        + rdr["Sobrenome"].ToString();
+                        funcionarios.DtNascimento = rdr["DtNascimento"].ToString();
+                    }
+                }
+                return funcionarios;
+            }
+        }
+       
+
+        public List<FuncionarioDomain> RetornarFunASC()
+        {
+            List<FuncionarioDomain> funcionarios = new List<FuncionarioDomain>();
+
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                string query = "EXEC ordemnsASC";
+
+                con.Open();
+
+                SqlDataReader rdr;
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    // Executa a query
+                    rdr = cmd.ExecuteReader();
+
+                    while (rdr.Read())
+                    {
+
+                        FuncionarioDomain funcionario = new FuncionarioDomain();
+
+                        funcionario.IdFun = Convert.ToInt32(rdr["IdFuncionario"]);
+                        funcionario.NomeFun = rdr["Nome"].ToString();
+                        funcionario.SobrenomeFun = rdr["Sobrenome"].ToString();
+                        funcionario.DtNascimento = rdr["DataNascimento"].ToString();
+
+                        funcionarios.Add(funcionario);
+                    }
+                }
+            }
+            return funcionarios;
+        }
     }
 }
+
+

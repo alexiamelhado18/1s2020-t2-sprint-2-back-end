@@ -12,5 +12,7 @@ namespace Senai.Peoples.WebApi.Domains
         public string NomeFun { get; set; }
 
         public string SobrenomeFun { get; set; }
+
+        public string DtNascimento { get; set; }
     }
 }

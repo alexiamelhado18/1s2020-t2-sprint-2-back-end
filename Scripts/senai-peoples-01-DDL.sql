@@ -11,3 +11,6 @@ NomeFun				VARCHAR(255) NOT NULL,
 SobrenomeFun		VARCHAR(255) NOT NULL
 );
 GO
+
+ALTER TABLE Funcionario ADD  DtNascimento DATE;
+
