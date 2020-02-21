@@ -5,10 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="C:\Users\50065222830\Desktop\1s2020-t2-sprint-2-back-end\Senai.Peoples.WebApi\FuncionarioController.cs" Link="FuncionarioController.cs" />
+    <Compile Include="C:\Users\50065222830\Desktop\1s2020-t2-sprint-2-back-end\FuncionarioController.cs" Link="FuncionarioController.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Controllers\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

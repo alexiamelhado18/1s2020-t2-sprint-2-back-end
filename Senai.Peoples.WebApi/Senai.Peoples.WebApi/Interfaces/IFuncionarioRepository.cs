@@ -12,9 +12,9 @@ namespace Senai.Peoples.WebApi.Interfaces
 
         void CadastrarFun(FuncionarioDomain funcionarioDomain);
 
-        void AlterarInfoFunId(int id);
+        void AlterarInfoFunId(int id, FuncionarioDomain funcionarioDomain);
 
-        void AlterarInfoFunCorpo(int id,FuncionarioDomain funcionarioDomain);
+        void AlterarInfoFunCorpo(FuncionarioDomain funcionarioDomain);
         
         void DeletarFun(int id);
 

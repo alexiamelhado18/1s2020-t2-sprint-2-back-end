@@ -9,24 +9,64 @@ namespace Senai.Peoples.WebApi.Repositories
     public class FuncionarioRepository : IFuncionarioRepository
     {
 
-        private string StringConexao = "Data Source=LAB104701\\SQLEXPRESS02; initial catalog=M_Peoples; user Id=sa; pwd=132";
+        private string StringConexao = "Data Source=DEV1001\\SQLEXPRESS; initial catalog=M_Peoples; user Id=sa; pwd=sa@132";
 
 
-        public void AlterarInfoFunCorpo(int id, FuncionarioDomain funcionarioDomain)
+        public void AlterarInfoFunId(int id, FuncionarioDomain funcionarioDomain)
         {
-            throw new NotImplementedException();
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                string queryBuscarFun = "UPDATE Funcionario SET NomeFun = @NomeFun," +
+                                        "SobrenomeFun = @SobrenomeFun WHERE IdFun = @ID";
+
+                using (SqlCommand cmd = new SqlCommand(queryBuscarFun, con))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    cmd.Parameters.AddWithValue("@NomeFun", funcionarioDomain.NomeFun);
+                    cmd.Parameters.AddWithValue("@SobrenomeFun", funcionarioDomain.SobrenomeFun);
+
+                    con.Open();
+
+                    cmd.ExecuteNonQuery();
+                }
+
+            }
         }
 
-        public void AlterarInfoFunId(int id)    
+
+        
+
+        public void AlterarInfoFunCorpo(FuncionarioDomain funcionario)    
         {
-            throw new NotImplementedException();
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                FuncionarioDomain funcionarios = new FuncionarioDomain();
+
+                string queryAtualizarId = "UPDATE Funcionario SET NomeFun = @NomeFun," +
+                                          "SobrenomeFun = @SobrenomeFun WHERE IdFun = @ID";
+
+            using (SqlCommand cmd = new SqlCommand(queryAtualizarId, con))
+                {
+                    cmd.Parameters.AddWithValue("@ID", funcionario.IdFun);
+                    cmd.Parameters.AddWithValue("@NomeFun", funcionario.NomeFun);
+                    cmd.Parameters.AddWithValue("@SobrenomeFun", funcionario.SobrenomeFun);
+                                       
+                    con.Open();
+
+                    cmd.ExecuteNonQuery();
+
+                }
+            }
         }
+
+
 
         public FuncionarioDomain BuscarFunId(int id)
         {
             using (SqlConnection con = new SqlConnection(StringConexao))
             {
-                string queryBuscarId = "SELECT * FROM Funcionario WHERE IdFuncionario = @ID";
+                string queryBuscarId = "SELECT * FROM Funcionario WHERE IdFun = @ID";
+
 
                 con.Open();
 
@@ -34,7 +74,7 @@ namespace Senai.Peoples.WebApi.Repositories
 
                 using (SqlCommand cmd = new SqlCommand(queryBuscarId, con))
                 {
-                    cmd.Parameters.AddWithValue(" @ID ", id);
+                    cmd.Parameters.AddWithValue("@ID ", id);
 
                     rdr = cmd.ExecuteReader();
 
@@ -42,7 +82,7 @@ namespace Senai.Peoples.WebApi.Repositories
                     {
                         FuncionarioDomain funcionario = new FuncionarioDomain
                         {
-                            IdFuncionario = Convert.ToInt32(rdr[0]),
+                            IdFun = Convert.ToInt32(rdr[0]),
                             NomeFun = rdr["NomeFun"].ToString(),
                             SobrenomeFun = rdr["SobrenomeFun"].ToString()
 
@@ -54,6 +94,10 @@ namespace Senai.Peoples.WebApi.Repositories
             }
 
         }
+
+
+
+
 
         public void CadastrarFun(FuncionarioDomain funcionarioDomain)
         {
@@ -73,10 +117,27 @@ namespace Senai.Peoples.WebApi.Repositories
             }
         }
 
+
+
+
         public void DeletarFun(int id)
         {
-            throw new NotImplementedException();
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                string queryDeletar = "DELETE FROM Funcionario WHERE IdFun = @ID";
+
+                using (SqlCommand cmd = new SqlCommand(queryDeletar, con))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    con.Open();                 
+                    cmd.ExecuteNonQuery();
+
+                }
+            }
         }
+
+
+
 
         public List<FuncionarioDomain> ListarFuncionario()
         {
@@ -98,7 +159,7 @@ namespace Senai.Peoples.WebApi.Repositories
                     {
                         FuncionarioDomain funcionario = new FuncionarioDomain
                         {
-                            IdFuncionario = Convert.ToInt32(rdr[0]),
+                            IdFun = Convert.ToInt32(rdr[0]),
                             NomeFun = rdr["NomeFun"].ToString(),
                             SobrenomeFun = rdr["SobrenomeFun"].ToString()
                         };
@@ -109,5 +170,8 @@ namespace Senai.Peoples.WebApi.Repositories
                 return funcionarios;
             }
         }
+
+
+
     }
 }
